@@ -1,1 +1,15 @@
-/* No CSS */
+.tituloProducto {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 15vh;
+  margin-bottom: 5vh;
+}
+
+.imagenProducto {
+  width: 250px;
+  height: auto;
+}
