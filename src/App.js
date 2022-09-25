@@ -28,9 +28,9 @@ function App() {
           <div key={producto.id}>  
           <ProductCard
             id = {producto.id}
-            titulo={producto.title}
+            titulo={producto.description}
             precio={producto.price}
-            image ={producto.image}          
+            imagen ={producto.image}          
           />
           </div>
           )
