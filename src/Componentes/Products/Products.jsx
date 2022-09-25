@@ -26,6 +26,7 @@ export const Products=()=>{
                 return(
                 <ProductCard 
                   key = {producto.id}
+                  id  = {producto.id}
                   titulo={producto.title}
                   precio={producto.price}
                   imagen ={producto.image}          
