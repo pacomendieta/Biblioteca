@@ -1,10 +1,12 @@
-.tituloProducto {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.productCard {
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tituloProducto {
+  font-size: 2em;
+  font-weight: bold;
   margin-top: 15vh;
   margin-bottom: 5vh;
 }
@@ -12,4 +14,9 @@
 .imagenProducto {
   width: 250px;
   height: auto;
+}
+
+.descripcion {
+  width: 250px;
+  text-align: justify;
 }
