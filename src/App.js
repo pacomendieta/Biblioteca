@@ -8,7 +8,7 @@ import axios from 'axios';
 import './css/App.css';
 import { Products } from './Componentes/Products/Products';
 import { ProductDetail } from './Componentes/ProductDetail/ProductDetail.jsx';
-import { PaginaSearch } from './Componentes/Products/PaginaSearch';
+import { PaginaSearch } from './Paginas/PaginaSearch';
 import { PaginaHome } from './Paginas/PaginaHome';
 
 function App() {
