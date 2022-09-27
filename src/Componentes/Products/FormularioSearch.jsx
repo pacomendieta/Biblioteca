@@ -3,7 +3,7 @@
 //     fsubmit = funcion a ejecutar con el evento submit del formulario
 // Formulario Renderizado:
 //    campos id, titulo
-
+import '../../css/FormularioSearch.css';
   export const FormularioSearch=( props )=>{
       let campos = {id:'ID INICIAL', titulo: 'TITULO VACIO'};
 
@@ -21,11 +21,15 @@
     }
   
     return (
-      <form>
+      <form className="formularioSearch">
+      
          <input type='text'  placeholder='id'       name='id' 
                 onChange={(e)=>actualizaCampo(e,'id')}  />
+       
+       
          <input type='text'  placeholder='titulo'   name='titulo'
                 onChange={(e)=>actualizaCampo(e,'titulo')} />
+       
          <button type='submit'  onClick={ (e)=>enviaFormulario(e)}> Buscar </button>
        </form>
       );

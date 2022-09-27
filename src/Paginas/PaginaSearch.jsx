@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FormularioSearch, FormularioSearch2, FormularioBasico } from "../Componentes/Products/FormularioSearch";
+import '../css/PaginaSearch.css';
 
 export const PaginaSearch = ()=>{
 
@@ -19,7 +20,7 @@ export const PaginaSearch = ()=>{
 
 
 
-    let [resultado,setResultado] = useState({id:'1',titulo:'ENCONTRADO1'});
+    let [resultado,setResultado] = useState({id:'',titulo:''});
     return(
         <div className="paginaSearch">
             <h2>Página de búsqueda de Productos</h2>
