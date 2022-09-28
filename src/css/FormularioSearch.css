@@ -1,0 +1,9 @@
+.formularioSearch {
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.formularioSearch input, .formularioSearch button {
+  font-size: 1.5em;
+}

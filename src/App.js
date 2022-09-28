@@ -8,6 +8,8 @@ import axios from 'axios';
 import './css/App.css';
 import { Products } from './Componentes/Products/Products';
 import { ProductDetail } from './Componentes/ProductDetail/ProductDetail.jsx';
+import { PaginaSearch } from './Paginas/PaginaSearch';
+import { PaginaHome } from './Paginas/PaginaHome';
 
 function App() {
 
@@ -16,8 +18,10 @@ function App() {
     <div>
     <Router>
       <Routes>
-        <Route path='/' element={ <Products />}></Route>
-        <Route path='/producto/:id' element={ <ProductDetail />}></Route>
+        <Route path='/' element={<PaginaHome/>}></Route>
+        <Route path='/producto/search' element={<PaginaSearch/>} />
+        <Route path='/producto/list'   element={ <Products />}></Route>
+        <Route path='/producto/:id'    element={ <ProductDetail />}></Route>
       </Routes>
 
     </Router>
