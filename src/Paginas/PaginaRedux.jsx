@@ -1,10 +1,19 @@
 //Componente PaginaRedux
 //Renderiza la pagina /redux
 import '../css/PaginaRedux.css';
-import {useSelector} from 'react-redux';
-
+import {useSelector, useDispatch} from 'react-redux';
+import {init} from '../store/productosReducer';
 
 import store from '../store';
+
+
+
+let initProducto=()=>{
+
+    //console.log("Init: cargar productos");
+    store.dispatch( {type:'productos/inits'} );
+    //console.log("Nuevo estado:", store.getState());
+}
 
 // -- evento boton Añadir Producto
 let addProducto=()=>{
@@ -26,16 +35,18 @@ let delProducto=()=>{
 export const PaginaRedux=()=>{
     console.log("Estado: ", store.getState());
 
+
     // -- EstadoVisual ---- //
     const EstadoVisual = ()=>{
         let estado = useSelector( (state)=>state );
+        console.log("EstadoVisual. estado=", estado);
         return (
             <>
             <p>Valores del estado</p>
             <p>Total: {estado.total}</p>
             <p>Productos</p>
             {  estado.productos.map( producto=>{ 
-                return(<p>Titulo: {producto.titulo}</p>)
+                return(<p key={producto.id}>Titulo: {producto.titulo}</p>)
               
             })}
 
@@ -49,6 +60,7 @@ export const PaginaRedux=()=>{
         return (
             <>
                 <p>Controles del estado</p>
+                <button onClick={ initProducto }>INIT: Cargar Productos</button>
                 <button onClick={ addProducto }>Añadir Producto</button>
                 <button onClick={ delProducto }>Quitar Producto</button>
             </>

@@ -6,7 +6,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import '../../css/Products.css';
 
-export const Products=()=>{
+export const ProductsList=()=>{
     var [products, setProducts] = useState( [] );
   
     // Carga de productos en "products" llamndo al API

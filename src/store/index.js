@@ -1,7 +1,7 @@
 // Crear store (Redux state)
 import {configureStore} from  '@reduxjs/toolkit';
 import {createStore} from 'redux';
-import productsReducer from './productos'
+import productsReducer from './productosReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'; //Para que funcionen las devtools de redux
 
 // Crear Redux Store
