@@ -8,24 +8,29 @@ import axios from 'axios';
 import './css/App.css';
 import { Products } from './Componentes/Products/Products';
 import { ProductDetail } from './Componentes/ProductDetail/ProductDetail.jsx';
-import { PaginaSearch } from './Paginas/PaginaSearch';
+import { PaginaSearch }  from './Paginas/PaginaSearch';
 import { PaginaHome } from './Paginas/PaginaHome';
+import { PaginaRedux } from './Paginas/PaginaRedux';
+import store from './store';    
+import { Provider} from 'react-redux';
 
 function App() {
 
 
   return (
     <div>
-    <Router>
-      <Routes>
-        <Route path='/' element={<PaginaHome/>}></Route>
-        <Route path='/producto/search' element={<PaginaSearch/>} />
-        <Route path='/producto/list'   element={ <Products />}></Route>
-        <Route path='/producto/:id'    element={ <ProductDetail />}></Route>
-      </Routes>
+    <Provider store={store} >
+      <Router>
+        <Routes>
+          <Route path='/' element={<PaginaHome/>}></Route>
+          <Route path='/producto/search' element={<PaginaSearch/>} />
+          <Route path='/producto/list'   element={ <Products />}></Route>
+          <Route path='/producto/:id'    element={ <ProductDetail />}></Route>
+          <Route path='/redux'           element={ <PaginaRedux />} />
+        </Routes>
 
-    </Router>
-   
+      </Router>
+    </Provider>
     </div>
   );
 }

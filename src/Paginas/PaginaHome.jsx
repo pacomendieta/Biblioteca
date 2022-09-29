@@ -8,6 +8,7 @@ export const PaginaHome=()=>{
             <div className="menuPrincipal">
                 <Link to = '/producto/list'>Productos</Link>
                 <Link to = '/producto/search'>Busqueda Productos</Link>
+                <Link to = '/redux'>Pagina Redux</Link>
             </div>
         </header>
     )

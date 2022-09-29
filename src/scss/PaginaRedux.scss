@@ -1,0 +1,25 @@
+.paginaredux {
+    text-align: center;
+    h1 {
+        font-size: 2em;
+    }
+    .gridpaginaredux {
+        display:flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 1em;
+    }
+    .celdagrid {
+        flex-grow: 1;
+        border: 1px solid gray;
+        font-size: 1.5em;
+    }
+    .celdagrid2 {
+        border: 1px solid red;
+    }
+    button {
+        margin: 5px;
+        font-size: 1em;
+    }
+
+}

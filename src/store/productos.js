@@ -1,10 +1,29 @@
+import {   createAsyncThunk, createSlice } from '@reduxjs/toolkit'; 
+import Axios from 'axios';
+
 // Crear Reducer de Productos
 let estadoInicial = {
-    total:0,
-    productos:  []
+    total:1,
+    productos:  [{id:1, titulo:"Producto1"}]
 };
 
 //funciones REDUCER ------------------------------------------------------
+let addReducer=(state, action)=> {
+    //console.log("..addReducer..");
+    let newstate = state;
+    newstate.total++;
+    newstate.productos.push({id:action.producto.id, titulo:action.producto.titulo});
+    return newstate;
+}
+let delReducer=(state, action)=> {
+        //console.log("..delReducer..");
+        let newstate = state;
+        newstate.total = newstate.total ? newstate.total-1: 0;
+        newstate.productos.pop();
+        return newstate;
+    
+    return state;
+}
 
 //--Reducer asincrono listado
 export const listado = createAsyncThunk ('productos/listado', async ({})=>{
@@ -14,6 +33,9 @@ export const listado = createAsyncThunk ('productos/listado', async ({})=>{
     //console.log("Respuesta servicio web"+`Config.servicioVideoapi/users/singIn en .data.user`, respuesta.data.user );
     return respuesta ? respuesta.data : null;
 })
+
+
+
 let listado1=(state, action) => { 
     return state;
 }
@@ -39,3 +61,8 @@ let productSlice = createSlice({
 
     }
 })
+console.log("productSlice Creado: ", productSlice);
+console.log("Estado Inicial:", productSlice.getInitialState());
+
+//Exportar los reducers del Slice 
+export default productSlice.reducer;
