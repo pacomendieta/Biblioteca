@@ -11,7 +11,7 @@ import { ProductDetail } from './Componentes/ProductDetail/ProductDetail.jsx';
 import { PaginaSearch }  from './Paginas/PaginaSearch';
 import { PaginaHome } from './Paginas/PaginaHome';
 import { PaginaRedux } from './Paginas/PaginaRedux';
-import store from './store';    
+import store from './store/indexv2.js';    
 import { Provider} from 'react-redux';
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
           <Route path='/producto/search' element={<PaginaSearch/>} />
           <Route path='/producto/list'   element={ <ProductsList />}></Route>
           <Route path='/producto/:id'    element={ <ProductDetail />}></Route>
-          <Route path='/redux'           element={ <PaginaRedux />} />
+          <Route path='/redux'           element={ <PaginaRedux store={store}/>} />
         </Routes>
 
       </Router>

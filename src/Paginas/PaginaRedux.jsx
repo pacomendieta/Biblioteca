@@ -4,41 +4,41 @@ import '../css/PaginaRedux.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {init} from '../store/productosReducer';
 
-import store from '../store';
 
-
-
-let initProducto=()=>{
-
-    //console.log("Init: cargar productos");
-    store.dispatch( {type:'productos/inits'} );
-    //console.log("Nuevo estado:", store.getState());
-}
-
-// -- evento boton Añadir Producto
-let addProducto=()=>{
-    //console.log("Añadir producto");
-    let estado = store.getState();
-    let nuevoprod = { id: estado.total+1, titulo: 'titulo '+ (estado.total+1) };
-    store.dispatch( {type:'productos/add', producto:nuevoprod } );
-    //console.log("Nuevo estado:", store.getState());
-}
-// -- evento boton Quitar Producto
-let delProducto=()=>{
-    //console.log("Quitar producto");
-    store.dispatch( {type:'productos/del'} );
-    //console.log("Nuevo estado:", store.getState());
-}
-
-
-//---- PaginaRedux -------------------------//
-export const PaginaRedux=()=>{
+//---- PaginaRedux -----------------------------------------------------//
+export const PaginaRedux=({store})=>{
     console.log("Estado: ", store.getState());
+
+
+    let initProducto=()=>{
+
+        //console.log("Init: cargar productos");
+        store.dispatch( {type:'productos/inits'} );
+        //console.log("Nuevo estado:", store.getState());
+    }
+    
+    // -- evento boton Añadir Producto
+    let addProducto=()=>{
+        //console.log("Añadir producto");
+        let estado = store.getState();
+        let nuevoprod = { id: estado.total+1, titulo: 'titulo '+ (estado.total+1) };
+        store.dispatch( {type:'productos/add', producto:nuevoprod } );
+        //console.log("Nuevo estado:", store.getState());
+    }
+    // -- evento boton Quitar Producto
+    let delProducto=()=>{
+        //console.log("Quitar producto");
+        store.dispatch( {type:'productos/del'} );
+        //console.log("Nuevo estado:", store.getState());
+    }
+    
+    
+
 
 
     // -- EstadoVisual ---- //
     const EstadoVisual = ()=>{
-        let estado = useSelector( (state)=>state );
+        let estado = useSelector( (state)=>state.estadoProductos );
         console.log("EstadoVisual. estado=", estado);
         return (
             <>
