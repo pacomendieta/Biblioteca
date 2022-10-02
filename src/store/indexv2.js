@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'; //Para que funci
 
 
 const reducers = combineReducers( {estadoProductos: productosReducer } );
-const store = configureStore ( reducers, composeWithDevTools() ); 
-
+//const store = configureStore ( reducers, composeWithDevTools() ); 
+const store = createStore ( reducers, composeWithDevTools() ); 
 
 export default store;
