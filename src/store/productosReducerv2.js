@@ -1,6 +1,7 @@
 import {   createAsyncThunk, createSlice } from '@reduxjs/toolkit'; 
 import Axios from 'axios';
 import { startTransition } from 'react';
+import { getProductos } from '../Servicios/Productos';
 
 const urlapi = 'http://localhost:3001/productos';
 
@@ -87,13 +88,20 @@ export default productSlice.reducer;
 
 
 // ********************** VERSION SIMPLIFICADA ***********
+
+
 const estadoinicial = {total:1,productos:[{id:1,titulo:'tituloUNO'}]};
 export const productosReducer=(state=estadoinicial, action)=>{
-    let newsta = {...state};
+    let newsta = JSON.parse( JSON.stringify( state ));
+
     switch (action.type) {
         case 'productos/inits':
             newsta.total=0;
             newsta.productos=[];
+            break;
+        case 'productos/load':
+            newsta.total=20;
+            newsta.productos=action.payload;
             break;
         case 'productos/add':
             newsta.total++;
@@ -108,4 +116,11 @@ export const productosReducer=(state=estadoinicial, action)=>{
     }
     return newsta;
     
+}
+
+export const loadProductos=async ()=>{
+    console.log('loadProductos');
+    let productos = await getProductos();
+    console.log('...retorna action=',{ type:"productos/load", payload: productos } );
+    return { type:"productos/load", payload: productos };
 }
