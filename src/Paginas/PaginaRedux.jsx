@@ -3,7 +3,7 @@
 import '../css/PaginaRedux.css';
 import {useSelector, useDispatch} from 'react-redux';
 import {init} from '../store/productosReducer';
-
+import { Link } from "react-router-dom";
 
 //---- PaginaRedux -----------------------------------------------------//
 export const PaginaRedux=({store})=>{
@@ -71,6 +71,7 @@ export const PaginaRedux=({store})=>{
     return(
         <div className="paginaredux">
             <h1>Pagina Redux</h1>
+            <Link to={'/'}> back to home</Link>
             <div className='gridpaginaredux' >
                 <div className='celdagrid'>
                     <h2>Estado</h2>
