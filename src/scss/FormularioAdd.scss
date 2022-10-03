@@ -1,0 +1,17 @@
+.formularioAdd {
+    height:20vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    input, button {
+        font-size: 1.2em;
+    }
+    transition-duration: 3s;
+    &.visible {
+        padding: 20px;
+        background-color:gray;
+    } 
+    &.novisible {
+        display: none;
+    }
+}

@@ -1,5 +1,5 @@
-.formularioSearch {
-  height: 40vh;
+.formularioAdd {
+  height: 20vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10,8 +10,19 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -webkit-transition-duration: 3s;
+          transition-duration: 3s;
 }
 
-.formularioSearch input, .formularioSearch button {
-  font-size: 1.5em;
+.formularioAdd input, .formularioAdd button {
+  font-size: 1.2em;
+}
+
+.formularioAdd.visible {
+  padding: 20px;
+  background-color: gray;
+}
+
+.formularioAdd.novisible {
+  display: none;
 }

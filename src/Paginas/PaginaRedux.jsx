@@ -4,8 +4,9 @@ import '../css/PaginaRedux.css';
 import {useSelector, useDispatch} from 'react-redux';
 import { Link } from "react-router-dom";
 import { initProductos, productos } from '../store/productosReducerv2';
-import { getProductos } from '../Servicios/Productos';
+import { getProductos, addProducto } from '../Servicios/Productos';
 import react from 'react';
+import { FormularioAdd } from '../Componentes/Products/FormularioAdd';
 
 //---- PaginaRedux -----------------------------------------------------//
 export const PaginaRedux=({store})=>{
@@ -13,6 +14,7 @@ export const PaginaRedux=({store})=>{
     let estado = store.getState().estadoProductos;
     console.log("Estado Productos:", estado);
     const dispatcher = useDispatch();
+    var classform = "novisible"; //mostrar/ocultar form
 
     //Cargar Productos cuando se renderiza el componente por primera vez con readt.useEffect()
     react.useEffect( ()=>{
@@ -44,12 +46,19 @@ export const PaginaRedux=({store})=>{
     }
     
     // -- evento boton Añadir Producto
-    let addProducto=()=>{
+    let addBoton=async ()=>{
+        classform="visible";
+        let res=[];
         //console.log("Añadir producto");
         //let estado = store.getState();
         let estado = store.getState().estadoProductos;
-        let nuevoprod = { id: estado.total+1, titulo: 'titulo '+ (estado.total+1) };
-        store.dispatch( {type:'productos/add', payload :nuevoprod } );
+        let estadofront= store.getState().frontend;
+        store.dispatch ( {type: 'frontend/mostrar-add-form'} );
+        let nuevoprod = { id: estado.total+1, title: 'titulo '+ (estado.total+1) };
+        //meterlo en la bd de json-server
+        //res = await addProducto( nuevoprod );         
+        //meterlo en el state
+        //store.dispatch( {type:'productos/add', payload :nuevoprod } );
         //console.log("Nuevo estado:", store.getState());
     }
     // -- evento boton Quitar Producto
@@ -83,7 +92,7 @@ export const PaginaRedux=({store})=>{
             <p>Total: {estado.total}</p>
             <p>Productos</p>
             {  estado.productos && estado.productos.map( producto=>{ 
-                return(<p key={producto.id}>Titulo: {producto.titulo}</p>)
+                return(<p key={producto.id}>Titulo: {producto.title}</p>)
               
             })}
 
@@ -94,17 +103,24 @@ export const PaginaRedux=({store})=>{
     }
     // -- ControlesEstado ---- //
     const ControlesEstado = ()=>{
+
         return (
             <>
                 <p>Controles del estado</p>
                 <button onClick={ botonReset }>RESET: borrar todos</button>
                 <button onClick={ initBoton }>Init: Cargar Productos</button>
-                <button onClick={ addProducto }>Añadir Producto</button>
+                <button onClick={ addBoton }>Form Añadir Producto</button>
                 <button onClick={ delProducto }>Quitar Producto</button>
             </>
         )
     }
-
+    let enviarForm=async ({id,title})=>{
+       if ( !id || !title) return;
+       store.dispatch ( {type: 'frontend/ocultar-add-form'} );
+       let nuevoprod = { id: id, title: title };
+       store.dispatch( {type:'productos/add', payload :nuevoprod } );
+       await addProducto( nuevoprod ); 
+    }
 
     return(
         <div className="paginaredux">
@@ -118,7 +134,11 @@ export const PaginaRedux=({store})=>{
                 <div className='celdagrid celdagrid2'>
                     <h2>Controles</h2>
                     <ControlesEstado />
+                    <FormularioAdd fsubmit={enviarForm} />
+        
+
                 </div>
+   
             </div>
         </div>
     )

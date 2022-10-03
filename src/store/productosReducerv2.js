@@ -41,6 +41,6 @@ export const productosReducer=(state=estadoinicial, action)=>{
 // puede ser llamada desde dispatcher ( initProductos() ) para la carga inicial
 export const initProductos= (prods )=>{
     productos = [];
-    if (prods) prods.map (prod=>productos.push({id:prod.id, titulo:prod.title}));
+    if (prods) prods.map (prod=>productos.push(prod));
     return { type:"productos/init", payload: productos };
 }
