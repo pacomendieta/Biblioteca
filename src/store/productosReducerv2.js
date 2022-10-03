@@ -1,21 +1,9 @@
-import {   createAsyncThunk, createSlice } from '@reduxjs/toolkit'; 
-import Axios from 'axios';
-import { startTransition } from 'react';
-import { getProductos } from '../Servicios/Productos';
 //import productos from './productos';
 
-const urlapi = 'http://localhost:3001/productos';
-
-// Crear el estado inicial
-let estadoInicial = {
-    total:1,
-    productos:  [{id:1, titulo:"Producto1 de ProductReducer"}]
-};
 
 // Cargar Productos desde el API
 export var productos=[]; //Array contenedor productos carga inicial desde api
-//productos = getProductos();
-console.log("Productos cargados desde API en store/productosReducer:", productos);
+
 
 // ********************** VERSION SIMPLIFICADA ***********
 const estadoinicial = {total:1,productos:[{id:1,titulo:'tituloUNO'}]};
@@ -46,20 +34,13 @@ export const productosReducer=(state=estadoinicial, action)=>{
         default:
             return state;
     }
-    return newsta;
-    
+    return newsta;  
 }
 
 // initProductos retorna la action productos/init con payload=todos los productos del api
 // puede ser llamada desde dispatcher ( initProductos() ) para la carga inicial
 export const initProductos= (prods )=>{
-    //console.log("prods=", prods);
-    //console.log("stringify prods=", JSON.stringify (prods));
-
-    //productos = JSON.parse(JSON.stringify(prods) );
-    //console.log("productos=",productos);
     productos = [];
-    prods.map (prod=>productos.push({id:prod.id, titulo:prod.title}));
-    console.log('...retorna action=',{ type:"productos/init", payload: productos } );
+    if (prods) prods.map (prod=>productos.push({id:prod.id, titulo:prod.title}));
     return { type:"productos/init", payload: productos };
 }

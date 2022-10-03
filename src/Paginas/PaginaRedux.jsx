@@ -5,13 +5,36 @@ import {useSelector, useDispatch} from 'react-redux';
 import { Link } from "react-router-dom";
 import { initProductos, productos } from '../store/productosReducerv2';
 import { getProductos } from '../Servicios/Productos';
-
+import react from 'react';
 
 //---- PaginaRedux -----------------------------------------------------//
 export const PaginaRedux=({store})=>{
     console.log("Estado: ", store.getState());
     let estado = store.getState().estadoProductos;
     console.log("Estado Productos:", estado);
+    const dispatcher = useDispatch();
+
+    //Cargar Productos cuando se renderiza el componente por primera vez con readt.useEffect()
+    react.useEffect( ()=>{
+        console.log("Renderizada Pagina Redux");
+        let prods=[];
+        async function carga() {
+            prods =   await getProductos(); 
+            console.log("useEffect prods:", prods);
+            store.dispatch( initProductos( prods ));
+        }
+        
+        //prods =   await getProductos();
+        //console.log('initBoton()');
+        //let productos = await getProductos();
+        carga();
+        console.log("Cargando productos en useEffect:", prods);
+        //store.dispatch( {type:'productos/load', payload:productos} );
+        //store.dispatch( initProductos( prods ));
+        //console.log("Nuevo estado:", store.getState());
+    }, [dispatcher]);
+
+
 
     let botonReset=()=>{
 
