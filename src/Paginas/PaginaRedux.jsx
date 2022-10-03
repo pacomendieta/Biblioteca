@@ -2,9 +2,10 @@
 //Renderiza la pagina /redux
 import '../css/PaginaRedux.css';
 import {useSelector, useDispatch} from 'react-redux';
-import {init} from '../store/productosReducer';
 import { Link } from "react-router-dom";
-import { loadProductos } from '../store/productosReducerv2';
+import { initProductos, productos } from '../store/productosReducerv2';
+import { getProductos } from '../Servicios/Productos';
+
 
 //---- PaginaRedux -----------------------------------------------------//
 export const PaginaRedux=({store})=>{
@@ -12,10 +13,10 @@ export const PaginaRedux=({store})=>{
     let estado = store.getState().estadoProductos;
     console.log("Estado Productos:", estado);
 
-    let initProducto=()=>{
+    let botonReset=()=>{
 
         //console.log("Init: cargar productos");
-        store.dispatch( {type:'productos/inits'} );
+        store.dispatch( {type:'productos/reset'} );
         //console.log("Nuevo estado:", store.getState());
     }
     
@@ -23,8 +24,9 @@ export const PaginaRedux=({store})=>{
     let addProducto=()=>{
         //console.log("Añadir producto");
         //let estado = store.getState();
+        let estado = store.getState().estadoProductos;
         let nuevoprod = { id: estado.total+1, titulo: 'titulo '+ (estado.total+1) };
-        store.dispatch( {type:'productos/add', producto:nuevoprod } );
+        store.dispatch( {type:'productos/add', payload :nuevoprod } );
         //console.log("Nuevo estado:", store.getState());
     }
     // -- evento boton Quitar Producto
@@ -34,12 +36,14 @@ export const PaginaRedux=({store})=>{
         //console.log("Nuevo estado:", store.getState());
     }
     // -- evento boton Load Productos
-    let loadBoton=async ()=>{
-        console.log('loadBoton()');
+    let initBoton=  async ()=>{
+        let prods=[];
+        prods =   await getProductos();
+        //console.log('initBoton()');
         //let productos = await getProductos();
-        //console.log("Productos:", productos);
+        console.log("getProductos retorna:", prods);
         //store.dispatch( {type:'productos/load', payload:productos} );
-        store.dispatch( loadProductos());
+        store.dispatch( initProductos( prods ));
         //console.log("Nuevo estado:", store.getState());
     }
 
@@ -70,8 +74,8 @@ export const PaginaRedux=({store})=>{
         return (
             <>
                 <p>Controles del estado</p>
-                <button onClick={ initProducto }>INIT: Cargar Productos</button>
-                <button onClick={ loadBoton }>Cargar Producto</button>
+                <button onClick={ botonReset }>RESET: borrar todos</button>
+                <button onClick={ initBoton }>Init: Cargar Productos</button>
                 <button onClick={ addProducto }>Añadir Producto</button>
                 <button onClick={ delProducto }>Quitar Producto</button>
             </>

@@ -2,114 +2,46 @@ import {   createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import Axios from 'axios';
 import { startTransition } from 'react';
 import { getProductos } from '../Servicios/Productos';
+//import productos from './productos';
 
 const urlapi = 'http://localhost:3001/productos';
 
-// Crear Reducer de Productos
+// Crear el estado inicial
 let estadoInicial = {
     total:1,
     productos:  [{id:1, titulo:"Producto1 de ProductReducer"}]
 };
 
-//funciones REDUCER ------------------------------------------------------
-let addReducer=(state, action)=> {
-    //console.log("..addReducer..");
-    let newstate = state;
-    newstate.total++;
-    newstate.productos.push({id:action.producto.id, titulo:action.producto.titulo});
-    return newstate;
-}
-let delReducer=(state, action)=> {
-        //console.log("..delReducer..");
-        let newstate = state;
-        newstate.total = newstate.total ? newstate.total-1: 0;
-        newstate.productos.pop();
-        return newstate;
-    
-    return newstate;
-}
-let initReducer=(state, action)=> {
-    //console.log("..initReducer..");
-    let newstate = state;
-    newstate.total = 0;
-    newstate.productos = [];
-    return newstate;
-
-return newstate;
-}
-
-
-//--Reducer asincrono init
-export const init = createAsyncThunk ('productos/init', async ({})=>{
-    // SignIn asincrono
-    //console.log("Dentro de signIn Action. Credenciales:", credenciales);
-    let respuesta=await Axios.post(urlapi);
-    //console.log("Respuesta servicio web"+`Config.servicioVideoapi/users/singIn en .data.user`, respuesta.data.user );
-    return respuesta ? respuesta.data : null;
-});
-
-
-
-let init1=(state, action) => { 
-    state.status="Cargando...";
-    return state;
-}
-let init2=(state, action) => { 
-    state.status="Cargados OK";
-    state.productos = action.payload;
-    return state;
-}
-let init3=(state, action) => { 
-    return state;
-}
-
-//CREAR EL ESTADO DE PRODUCTOS:   productSlice ---------------------------
-let productSlice = createSlice({
-    name: 'productos',                  // nombre del slice en el debugger
-    initialState: estadoInicial,        // estado inicial
-    reducers: {    // reducers 'normales' es decir síncronos:            
-        inits : initReducer,
-        add: addReducer,
-        del: delReducer
-    },
-    extraReducers: {                   // reducers que son de tipo asincrono. Un reducer por cada estado de la promise retornada por createAsyncThunk
-        [init.pending]:  init1,
-        [init.fulfilled]:init2,
-        [init.rejected]: init3,
-
-    }
-})
-console.log("productSlice Creado: ", productSlice);
-console.log("Estado Inicial:", productSlice.getInitialState());
-
-//Exportar los reducers del Slice 
-export default productSlice.reducer;
-
-
+// Cargar Productos desde el API
+export var productos=[]; //Array contenedor productos carga inicial desde api
+//productos = getProductos();
+console.log("Productos cargados desde API en store/productosReducer:", productos);
 
 // ********************** VERSION SIMPLIFICADA ***********
-
-
 const estadoinicial = {total:1,productos:[{id:1,titulo:'tituloUNO'}]};
 export const productosReducer=(state=estadoinicial, action)=>{
     let newsta = JSON.parse( JSON.stringify( state ));
 
     switch (action.type) {
-        case 'productos/inits':
+        case 'productos/reset':    // action: borrar productos del state.estadoProductos
             newsta.total=0;
             newsta.productos=[];
             break;
-        case 'productos/load':
-            newsta.total=20;
+        case 'productos/init':    // action: cargar en state los productos del action.payload
+            console.log("productos/init, action:", action);
+            console.log("global productos:", productos);
+            newsta.total=action.payload.length;
             newsta.productos=action.payload;
             break;
-        case 'productos/add':
+        case 'productos/add':   // action: añadir un nuevo producto del action.payload
             newsta.total++;
-            newsta.productos.push({id: state.total+1, titulo:"nuevo"+newsta.total});
+            newsta.productos.push(action.payload);
             break;
-        case 'productos/del':
-            newsta.total--;
-            newsta.productos.pop();
+        case 'productos/del':  // action: borrar ultimo producto del state.estadoProductos
+            if (newsta.total) {
+                newsta.total--;
+                newsta.productos.pop();  
+            }
             break;
         default:
             return state;
@@ -118,9 +50,16 @@ export const productosReducer=(state=estadoinicial, action)=>{
     
 }
 
-export const loadProductos=async ()=>{
-    console.log('loadProductos');
-    let productos = await getProductos();
-    console.log('...retorna action=',{ type:"productos/load", payload: productos } );
-    return { type:"productos/load", payload: productos };
+// initProductos retorna la action productos/init con payload=todos los productos del api
+// puede ser llamada desde dispatcher ( initProductos() ) para la carga inicial
+export const initProductos= (prods )=>{
+    //console.log("prods=", prods);
+    //console.log("stringify prods=", JSON.stringify (prods));
+
+    //productos = JSON.parse(JSON.stringify(prods) );
+    //console.log("productos=",productos);
+    productos = [];
+    prods.map (prod=>productos.push({id:prod.id, titulo:prod.title}));
+    console.log('...retorna action=',{ type:"productos/init", payload: productos } );
+    return { type:"productos/init", payload: productos };
 }

@@ -2,9 +2,9 @@
 import axios from 'axios';
 
 let apiurl = 'http://localhost:3001/productos';
+
 export const getProductos= async ()=>{
-    let resp = await axios.get(apiurl);
-    //console.log("getProductos():", resp.data);
-    let res = resp.data.map((producto)=>{return {id:producto.id, titulo:producto.title}});
-    return res;
+    const res = await axios.get(apiurl)
+    
+    return res.data;
 }
