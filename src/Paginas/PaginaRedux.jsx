@@ -1,10 +1,10 @@
 //Componente PaginaRedux
 //Renderiza la pagina /redux
 import '../css/PaginaRedux.css';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import { Link } from "react-router-dom";
-import { initProductos, productos } from '../store/productosReducerv2';
-import { getProductos, addProducto } from '../Servicios/Productos';
+import {initProductosv2 } from '../store/productosReducerv2';
+import {addProducto } from '../Servicios/Productos';
 import react from 'react';
 import { FormularioAdd } from '../Componentes/Products/FormularioAdd';
 
@@ -13,12 +13,15 @@ export const PaginaRedux=({store})=>{
     console.log("Estado: ", store.getState());
     let estado = store.getState().estadoProductos;
     console.log("Estado Productos:", estado);
-    const dispatcher = useDispatch();
-    var classform = "novisible"; //mostrar/ocultar form
 
     //Cargar Productos cuando se renderiza el componente por primera vez con readt.useEffect()
     react.useEffect( ()=>{
         console.log("Renderizada Pagina Redux");
+        store.dispatch ( initProductosv2( ));
+
+        return ;
+        // Version antigua:
+        /* 
         let prods=[];
         async function carga() {
             prods =   await getProductos(); 
@@ -34,7 +37,8 @@ export const PaginaRedux=({store})=>{
         //store.dispatch( {type:'productos/load', payload:productos} );
         //store.dispatch( initProductos( prods ));
         //console.log("Nuevo estado:", store.getState());
-    }, [dispatcher]);
+        */
+    }, [ ]);
 
 
 
@@ -47,14 +51,13 @@ export const PaginaRedux=({store})=>{
     
     // -- evento boton Añadir Producto
     let addBoton=async ()=>{
-        classform="visible";
-        let res=[];
+
+    
         //console.log("Añadir producto");
         //let estado = store.getState();
-        let estado = store.getState().estadoProductos;
-        let estadofront= store.getState().frontend;
+        
         store.dispatch ( {type: 'frontend/mostrar-add-form'} );
-        let nuevoprod = { id: estado.total+1, title: 'titulo '+ (estado.total+1) };
+
         //meterlo en la bd de json-server
         //res = await addProducto( nuevoprod );         
         //meterlo en el state
@@ -69,15 +72,9 @@ export const PaginaRedux=({store})=>{
     }
     // -- evento boton Load Productos
     let initBoton=  async ()=>{
-        let prods=[];
-        prods =   await getProductos();
-        //console.log('initBoton()');
-        //let productos = await getProductos();
-        console.log("getProductos retorna:", prods);
-        //store.dispatch( {type:'productos/load', payload:productos} );
-        store.dispatch( initProductos( prods ));
-        //console.log("Nuevo estado:", store.getState());
+        store.dispatch( initProductosv2( ));
     }
+
 
 
 

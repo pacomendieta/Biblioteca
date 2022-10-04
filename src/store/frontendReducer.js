@@ -9,6 +9,8 @@ switch ( action.type) {
     case 'frontend/ocultar-add-form':
         newstate.addForm= 0;
         break;
+    default:
+        break;
 }
 return newstate;
 
