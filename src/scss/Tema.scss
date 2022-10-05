@@ -1,0 +1,53 @@
+$colorglobal: pink;
+
+$propiedadescss:     
+(
+        temaoscuro: black,
+        colores: (
+            blanco:'#ffffff',
+            oscuro:'#27212e',
+            negro:'#373737',
+            acento:'#e53251',
+            gris: '#f2f2f2',
+            azul: '#67e7e2',
+            plata: '#716385'
+        ),
+        dims: (
+            padding: (
+                largepadding: '10vw',
+                medio: '0.5vw',
+                small: '1em',
+                tiny: '0.2em'
+            ),
+            paddingamplio: '10vw',
+        ),
+        width: (
+            tiny:  '15em',
+            small: '20em',
+            forms: '17.5em',
+            large: '60em'
+        ),
+        margin:(
+            small: '1em',
+            normal: '2em',
+            intersection: '1em'
+        ),
+        fonts: (
+            small: '0.8em',
+        ),
+        circle: (
+            small:'1em',
+        ),
+        borderRadius:(
+            small:'0.4em',
+            normal: '0.6em'
+        ),
+        sombras: (
+            prof2: '0 2px 2px'
+        )
+
+); //$propiedadescss
+
+.elementoazul {
+    background-color: map-get($propiedadescss,temaoscuro);
+}

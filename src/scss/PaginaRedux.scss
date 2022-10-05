@@ -1,7 +1,10 @@
+@import 'Tema.scss';
 .paginaredux {
     text-align: center;
     h1 {
         font-size: 2em;
+        color: $colorglobal;
+        background-color: map-get($propiedadescss,temaoscuro);
     }
     .gridpaginaredux {
         display:flex;

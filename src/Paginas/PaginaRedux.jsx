@@ -125,11 +125,11 @@ export const PaginaRedux=({store})=>{
             <Link to={'/'}> back to home</Link>
             <div className='gridpaginaredux' >
                 <div className='celdagrid'>
-                    <h2>Estado</h2>
+                    <h2>Estado (EstadoVisual)</h2>
                     <EstadoVisual />
                 </div>    
                 <div className='celdagrid celdagrid2'>
-                    <h2>Controles</h2>
+                    <h2>Controles (ControlesEstdo)</h2>
                     <ControlesEstado />
                     <FormularioAdd fsubmit={enviarForm} />
         

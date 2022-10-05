@@ -1,9 +1,15 @@
+.elementoazul {
+  background-color: black;
+}
+
 .paginaredux {
   text-align: center;
 }
 
 .paginaredux h1 {
   font-size: 2em;
+  color: pink;
+  background-color: black;
 }
 
 .paginaredux .gridpaginaredux {
