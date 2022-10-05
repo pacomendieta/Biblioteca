@@ -18,3 +18,15 @@ export const addProducto = async ( producto )=>{
 
     return res.data;
 }
+
+export const searchProductos=  async ({id,titulo})=>{
+    console.log("   ini searchProductos() busca id,titulo:", id,titulo)
+    if ( !id && !titulo) return [{ id:0, titulo:'No hay productos'}] ; 
+    let url, res;
+    if ( id )  url = apiurl + `/${id}`;
+    else  titulo? url = apiurl + `?title=${titulo}` : url=apiurl;
+    console.log("axios busca en: ", url);
+    res = await axios.get(url);
+    console.log("... axios en searcProductos retorna:", res.data)
+    return res.data;
+}

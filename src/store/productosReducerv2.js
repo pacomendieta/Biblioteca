@@ -56,7 +56,6 @@ export const initProductos= (prods )=>{
 export const initProductosv2 = ( )=>{
     return async ( dispatcher )=>{
         const prods =   await getProductos();
-        prods.push({id:"paco", title:"pacojones"});
         dispatcher( {type:"productos/initv2", payload: prods})
     }
 }

@@ -5,7 +5,7 @@
 //    campos id, titulo
 import '../../css/FormularioSearch.css';
   export const FormularioSearch=( props )=>{
-      let campos = {id:'ID INICIAL', titulo: 'TITULO VACIO'};
+      let campos = {id:'', titulo: ''};
 
       let actualizaCampo=(e, campo )=>{ 
          campos[campo]=e.target.value;
@@ -16,14 +16,16 @@ import '../../css/FormularioSearch.css';
     // enviaFormulario invoca a la funcion recibida en la propiedad fsubmit: props.fsubmit()
     let enviaFormulario =(e)=>{ 
       e.preventDefault();
+      campos['id'] = document.querySelector("[name=id]").value;
+      campos['titulo'] = document.querySelector("[name=titulo]").value;
       props.fsubmit({id:campos['id'],titulo:campos['titulo']});
       //console.log ( "Buscando Item...:", this.state)
     }
-  
+    const valor = props.valores.id;  
     return (
       <form className="formularioSearch">
       
-         <input type='text'  placeholder='id'       name='id' 
+         <input type='text'  placeholder='id'       name='id'  
                 onChange={(e)=>actualizaCampo(e,'id')}  />
        
        
