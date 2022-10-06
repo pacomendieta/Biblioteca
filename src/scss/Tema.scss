@@ -1,9 +1,42 @@
-$colorglobal: pink;
+@use 'colores';
+
+$colorh1 : colores.$rosa;
+$fondoh1 : colores.$negro;
+
+body, html {
+    margin: 0;
+    padding: 100;
+    box-sizing: border-box;  //Indicar que el ancho 100% debe incluir paddings
+
+    &:not(.temaoscuro) {
+        --colorh1 : #{colores.$negro};
+        --fondoh1:  #{colores.$gris};
+    }
+    &.temaoscuro {
+        --colorh1 : #{colores.$gris};
+        --fondoh1:  #{colores.$negro};
+    }
+}
+
+
+;
+
+
+
+
+body.dark {
+    background-color: colores.$negro;
+    color: colores.$blanco;
+}
+
+
+
 
 $propiedadescss:     
 (
         temaoscuro: black,
-        colores: (
+        colors: (
+            colorh1: pink,
             blanco:'#ffffff',
             oscuro:'#27212e',
             negro:'#373737',

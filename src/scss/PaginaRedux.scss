@@ -1,10 +1,11 @@
-@import 'Tema.scss';
+@use 'Tema.scss' as *;
 .paginaredux {
     text-align: center;
     h1 {
+
         font-size: 2em;
-        color: $colorglobal;
-        background-color: map-get($propiedadescss,temaoscuro);
+        color:            var(--colorh1);
+        background-color: var(--fondoh1) ;
     }
     .gridpaginaredux {
         display:flex;

@@ -1,7 +1,6 @@
 //Componente App
 // products[] = state con listado de productos
 
-import './css/Tema.css';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import axios from 'axios';
