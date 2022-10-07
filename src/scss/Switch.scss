@@ -8,7 +8,7 @@
             </div>
 */
 
-
+@use 'Tema' as *;
 .switch {
     // alinea iconos y checkbox dentro de su div. gap=separacion entre items
     display:flex;
@@ -16,26 +16,30 @@
     gap:1em;
 
 
-    --tamanioboton: 2rem;     //Cambiar aqui el ancho y alto del checkbox (caja-boton del checkbox)
+    --tamanioboton: 30px;     //Cambiar aqui el ancho y alto del checkbox (caja-boton del checkbox)
     
     // Oculta el checkbox. Lo que se ve realmente es su label, no checkbox.
     .botontoggle {
         display:none;
       }
       
+      // estilo label = iconos sol y luna y fondo del switch
       .botontoggle + label {
-
-          background-color:  var(--colorbotones);
           border-radius: 20px;
           display: inline-block;
           height: var(--tamanioboton);
           width:  calc(var(--tamanioboton)*2);
             position:relative;
       }
-      .botontoggle:checked + label {
-          background-color: rgb(134, 233, 121);
-      
+
+      // Cambio de color de fondo del switch segun posicion del switch
+      .botontoggle:checked + label {   // fija color fondo switch checked= pos dcha luna
+          background-color: var(--colorswitch);
+       }
+      .botontoggle + label  {          // fijar color fondo switch no checked= pos izda sol
+        background-color: var(--colorswitch);
       }
+      // Switch redondo a izquierda o derecha (not checked / checked)
       .botontoggle + label:after {
           content:"";
           width:  calc(var(--tamanioboton)*1.3);
@@ -44,7 +48,7 @@
           left: calc(var(--tamanioboton) * -0.3);
           top:  calc(var(--tamanioboton) * -0.15);
           border-radius:50%;
-          background-color: var(--colortexto1);
+          background-color: var(--colorbotones);
           transition: all 0.3s ease-in;
       }
       .botontoggle:checked + label:after {

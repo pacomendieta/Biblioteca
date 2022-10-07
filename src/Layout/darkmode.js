@@ -1,3 +1,7 @@
+// Manega el switch id=botontoggle  usado para poner dark mode
+// Graba/lee el ultimo valor en localstorage/fm-darkmode 
+// Aplica-quita la clase .temaoscuro al body
+
 window.onload=function() {
     bindEventos();
     leerThemeMode();
@@ -11,13 +15,11 @@ function bindEventos(){
 // Cambiar Dark/Light Mode cambiando una clase a <body> lo cual provoca cambios de variables de color en el css
 function toggleDarkMode( ev ){
     if (ev.target.checked) {
-        document.querySelector("body").classList.add("darkbody");
-        document.querySelector("body").classList.remove("lightbody");
+        document.querySelector("body").classList.add("temaoscuro");
         //console.log("Pongo modo dark");
         guardarThemeMode("dark");
     }else {
-        document.querySelector("body").classList.add("lightbody");
-        document.querySelector("body").classList.remove("darkbody");
+        document.querySelector("body").classList.remove("temaoscuro");
         guardarThemeMode("light");
         //console.log("quito");
     }
@@ -28,11 +30,11 @@ function leerThemeMode(){
     try{
         var themeMode=window.localStorage.getItem("fm-darkmode");
         if   ( themeMode == 'dark') {
-            document.querySelector("body").classList.add("darkbody");
+            document.querySelector("body").classList.add("temaoscuro");
             document.getElementById("botontoggle").checked=true;
         }    
         else {
-            document.querySelector("body").classList.add("lighbody");
+            document.querySelector("body").classList.remove("temaoscuro");
             document.getElementById("botontoggle").checked=false;
         }              
         

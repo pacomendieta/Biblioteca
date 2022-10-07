@@ -1,3 +1,32 @@
+body, html {
+  margin: 0;
+  padding: 100;
+  box-sizing: border-box;
+}
+body:not(.temaoscuro), html:not(.temaoscuro) {
+  --colorh1: #373737;
+  --fondoh1: #f2f2f2;
+  --colortexto1: rgb(84, 78, 78);
+  --colorbotones:rgb(213, 72, 7);
+  --colorswitch: rgb(72, 110, 67);
+}
+body.temaoscuro, html.temaoscuro {
+  --colorh1: #f2f2f2;
+  --fondoh1: #373737;
+  --colortexto1: rgb(188, 179, 179);
+  --colorbotones:rgb(227, 132, 117);
+  --colorswitch: rgb(134, 233, 121);
+}
+
+body.dark {
+  background-color: #373737;
+  color: #ffffff;
+}
+
+.elementoazul {
+  background-color: black;
+}
+
 /* EL HTML 
             <div class="switch">
                 <span class="sol">&#x2600;</span>
@@ -10,13 +39,12 @@
   display: flex;
   align-items: center;
   gap: 1em;
-  --tamanioboton: 2rem;
+  --tamanioboton: 30px;
 }
 .switch .botontoggle {
   display: none;
 }
 .switch .botontoggle + label {
-  background-color: var(--colorbotones);
   border-radius: 20px;
   display: inline-block;
   height: var(--tamanioboton);
@@ -24,7 +52,10 @@
   position: relative;
 }
 .switch .botontoggle:checked + label {
-  background-color: rgb(134, 233, 121);
+  background-color: var(--colorswitch);
+}
+.switch .botontoggle + label {
+  background-color: var(--colorswitch);
 }
 .switch .botontoggle + label:after {
   content: "";
@@ -34,7 +65,7 @@
   left: calc(var(--tamanioboton) * -0.3);
   top: calc(var(--tamanioboton) * -0.15);
   border-radius: 50%;
-  background-color: var(--colortexto1);
+  background-color: var(--colorbotones);
   transition: all 0.3s ease-in;
 }
 .switch .botontoggle:checked + label:after {
