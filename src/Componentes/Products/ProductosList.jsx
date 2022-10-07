@@ -1,5 +1,5 @@
 //Componente Products
-//Pinta listado de productos
+//Pinta listado de todos los productos cogidos del api
 
 import { ProductCard } from "../ProductCard/ProductCard";
 import axios from "axios";

@@ -22,11 +22,6 @@ body.temaoscuro, html.temaoscuro {
   --fondoheader: rgb(60,60,60);
 }
 
-body.dark {
-  background-color: #373737;
-  color: #ffffff;
-}
-
 .elementoazul {
   background-color: black;
 }

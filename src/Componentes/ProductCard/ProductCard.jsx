@@ -5,6 +5,7 @@ import "../../css/productcard.css";
 export const ProductCard = ({titulo, precio, imagen, id, descripcion})=>{
     return (
         <div key={id} className='productCard'>
+            <p>---Product Card ----</p>
             <Link className="tituloProducto" to={`/producto/${id}`}>{titulo}</Link>
             <img className="imagenProducto" src={imagen} alt="Imagen de producto."></img>
             {descripcion&& <p className="descripcion">{descripcion}</p>}
