@@ -15,6 +15,7 @@ import store from './store/indexv2.js';
 import { Provider} from 'react-redux';
 import { Cabecera } from './Layout/Cabecera';
 import { Pie } from './Layout/Pie';
+import { PaginaEstados } from './Paginas/PaginaHooks';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             <Route path='producto/list'   element={ <ProductsList />}></Route>
             <Route path='producto/:id'    element={ <ProductDetail />}></Route>
             <Route path='redux'           element={ <PaginaRedux store={store}/>} />
+            <Route path='hooks'           element={ <PaginaEstados/>} />
           </Route>
         </Routes>
 

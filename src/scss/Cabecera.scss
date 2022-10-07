@@ -5,7 +5,7 @@ header {
     padding: 1em;
     h1 {
         padding: 0;
-        margin: 0;
+        margin: 0.5em;
     }
 }
 
@@ -16,5 +16,6 @@ header {
     font-size: 1.2em ;
     a {
         text-decoration: none;
+        color: var(--colorlink);
     }
 }

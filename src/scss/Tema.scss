@@ -12,6 +12,7 @@ body, html {
         --colorbotones:rgb(213, 72, 7);
         --colorswitch: rgb(72, 110, 67);
         --fondoheader: rgb(200,200,200);
+        --colorlink: rgb(213, 72, 7);
     }
     &.temaoscuro {
         background-color: colores.$negro;
@@ -22,13 +23,13 @@ body, html {
         --colorbotones:rgb(227, 132, 117);
         --colorswitch: rgb(134, 233, 121);
         --fondoheader: rgb(60,60,60);
+        --colorlink: rgb(227, 132, 117);
     }
+};
+
+button {
+    background-color: var(--colorbotones);
 }
-
-
-;
-
-
 
 $propiedadescss:     
 (

@@ -6,21 +6,19 @@ import { ProductCard } from "../ProductCard/ProductCard";
 import { useEffect, useState } from "react";
 
 export const  ProductosSet =( {productos} )=>{
-    console.log("ProductosSet recibe esto:", productos)
+    console.log("PRODUCTOSSET recibe esto:", productos )
     return (
         <div >
-            { productos && productos.map( producto=>
-                {
+            { productos.map( producto=>
                     <ProductCard 
                         id={producto.id}
                         titulo={producto.title}
                         imagen={producto.image}
                     />
 
-                } )
+                )
             }
-            { !productos && <p>No se encontraron productos</p>}
-
+            { (productos.length==0) && <p>No se encontraron productos</p>}
         </div>
     )
 } 

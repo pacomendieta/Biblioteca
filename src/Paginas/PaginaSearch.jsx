@@ -7,24 +7,24 @@ import { ProductCard } from "../Componentes/ProductCard/ProductCard";
 
 let ResultadoSearch= ( props )=>{
     const {id, titulo} = props;
-    let [productos,setProductos] = useState([{id:0, title:'CERO'}]);
+    let [productos,setProductos] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(()=>{
         console.log("useEffect...modificados id o titulo")
         setLoading(true);
         searchProductos( {id: id, titulo: titulo } )
-        .then((res)=>{ setProductos([{id:1, title:'UNO'}]); console.log("productos:", productos); setLoading(false)});
+        .then((res)=>{ setProductos(res); console.log("productos:", productos); setLoading(false)});
     },[id,titulo])
 
     
-    console.log("se va a renderizar con productos=",productos);
+    console.log("resultadoSearch se va a renderizar con productos=",productos);
     return (
         <>
         <h2>Productos Encontrados:</h2>
-        <p>ID={props.id}  TITULO:{props.titulo}</p>
         { loading? <p>Cargando...</p>: <ProductosSet productos={productos} />
         }
           { !productos && <p>No se encontraron productos</p>}
+
         </>
     )
 }

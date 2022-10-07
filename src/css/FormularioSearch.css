@@ -1,17 +1,9 @@
 .formularioSearch {
-  height: 40vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  max-height: 10vh;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
-
 .formularioSearch input, .formularioSearch button {
-  font-size: 1.5em;
+  font-size: 1em;
 }
