@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FormularioSearch, FormularioSearch2, FormularioBasico } from "../Componentes/Products/FormularioSearch";
 import '../css/PaginaSearch.css';
 import { searchProductos } from "../Servicios/Productos";
 import { ProductosSet } from "../Componentes/Products/ProductosSet";
 import { ProductCard } from "../Componentes/ProductCard/ProductCard";
 import { Spinner } from "../Componentes/Spinner";
+import { useProductos } from "../Hooks/useProductos"; //custom Hook que carga y retorna productos
 
 let ResultadoSearch= ( props )=>{
     const {id, titulo} = props;
+    /*
     let [productos,setProductos] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(()=>{
@@ -16,9 +18,12 @@ let ResultadoSearch= ( props )=>{
         searchProductos( {id: id, titulo: titulo } )
         .then((res)=>{ setProductos(res); console.log("productos:", productos); setLoading(false)});
     },[id,titulo])
+    */
 
-    
-    console.log("resultadoSearch se va a renderizar con productos=",productos);
+    // custom hook, cada vez que cambie id,titulo, retorna loading (true/false) y array productos
+    let {loading, productos} = useProductos( {id,titulo})
+        
+    //console.log("resultadoSearch se va a renderizar con productos=",productos);
     return (
         <>
         <h2>Productos Encontrados:</h2>
@@ -33,7 +38,7 @@ let ResultadoSearch= ( props )=>{
 
 
 
-export const PaginaSearch = ()=>{
+ const PaginaSearch = ()=>{
     console.log("Renderizando PaginaSearch()")
     let [buscado,setBuscado] = useState({id:'',titulo:''});
 
@@ -55,3 +60,6 @@ export const PaginaSearch = ()=>{
         </div>
     )
 }
+export default PaginaSearch;  
+// El export con React.memo hace que no se renderize PaginaSearch cuando la funcion retorne false
+//export default React.memo(PaginaSearch,()=>false);

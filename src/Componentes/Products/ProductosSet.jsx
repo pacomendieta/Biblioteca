@@ -6,7 +6,7 @@ import { ProductCard } from "../ProductCard/ProductCard";
 import { useEffect, useState } from "react";
 
 export const  ProductosSet =( {productos} )=>{
-    console.log("PRODUCTOSSET recibe esto:", productos )
+    //console.log("PRODUCTOSSET recibe esto:", productos )
     return (
         <div >
             { productos.map( producto=>

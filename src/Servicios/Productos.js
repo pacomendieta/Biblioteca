@@ -20,7 +20,7 @@ export const addProducto = async ( producto )=>{
 }
 
 export const searchProductos=  async ({id,titulo})=>{
-    console.log("   ini searchProductos() busca id,titulo:", id,titulo)
+    //console.log("   ini searchProductos() busca id,titulo:", id,titulo)
     let prods=[];
     if ( !id && !titulo) return [] ; 
     let url, res;
@@ -47,7 +47,7 @@ export const searchProductos=  async ({id,titulo})=>{
     }  
     else  { // id vacio, buscar por titulo
         titulo? url = apiurl + `?title=${titulo}` : url=apiurl;
-        console.log("axios busca en: ", url);
+        //console.log("axios busca en: ", url);
         res = await axios.get(url);
         if ( res) prods = res.data; 
         console.log("... axios en searcProductos retorna:", res.data)
