@@ -16,6 +16,7 @@ import { Provider} from 'react-redux';
 import { Cabecera } from './Layout/Cabecera';
 import { Pie } from './Layout/Pie';
 import { PaginaEstados } from './Paginas/PaginaHooks';
+import { PaginaContext } from './Paginas/PaginaContextState';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
             <Route path='producto/:id'    element={ <ProductDetail />}></Route>
             <Route path='redux'           element={ <PaginaRedux store={store}/>} />
             <Route path='hooks'           element={ <PaginaEstados/>} />
+            <Route path='context'         element={ <PaginaContext />} />
           </Route>
         </Routes>
 
