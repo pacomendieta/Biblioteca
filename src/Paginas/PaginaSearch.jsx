@@ -4,6 +4,7 @@ import '../css/PaginaSearch.css';
 import { searchProductos } from "../Servicios/Productos";
 import { ProductosSet } from "../Componentes/Products/ProductosSet";
 import { ProductCard } from "../Componentes/ProductCard/ProductCard";
+import { Spinner } from "../Componentes/Spinner";
 
 let ResultadoSearch= ( props )=>{
     const {id, titulo} = props;
@@ -21,7 +22,7 @@ let ResultadoSearch= ( props )=>{
     return (
         <>
         <h2>Productos Encontrados:</h2>
-        { loading? <p>Cargando...</p>: <ProductosSet productos={productos} />
+        { loading? <p>Cargando...<Spinner/></p> :<ProductosSet productos={productos} />
         }
           { !productos && <p>No se encontraron productos</p>}
 

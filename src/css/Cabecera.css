@@ -24,6 +24,10 @@ body.temaoscuro, html.temaoscuro {
   --colorlink: rgb(227, 132, 117);
 }
 
+button {
+  background-color: var(--colorbotones);
+}
+
 .elementoazul {
   background-color: black;
 }
@@ -47,4 +51,8 @@ header h1 {
 .menuPrincipal a {
   text-decoration: none;
   color: var(--colorlink);
+}
+.menuPrincipal a:focus {
+  font-weight: bold;
+  text-shadow: 2px;
 }

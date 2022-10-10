@@ -10,6 +10,7 @@ body:not(.temaoscuro), html:not(.temaoscuro) {
   --colorbotones:rgb(213, 72, 7);
   --colorswitch: rgb(72, 110, 67);
   --fondoheader: rgb(200,200,200);
+  --colorlink: rgb(213, 72, 7);
 }
 body.temaoscuro, html.temaoscuro {
   background-color: #373737;
@@ -20,6 +21,11 @@ body.temaoscuro, html.temaoscuro {
   --colorbotones:rgb(227, 132, 117);
   --colorswitch: rgb(134, 233, 121);
   --fondoheader: rgb(60,60,60);
+  --colorlink: rgb(227, 132, 117);
+}
+
+button {
+  background-color: var(--colorbotones);
 }
 
 .elementoazul {
