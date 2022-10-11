@@ -2,14 +2,14 @@
 
 import { ContextoProductosProvider } from "../Hooks/ContextoProductos"
 import { ListadoContext } from "../Hooks/Listado"
-
+import '../css/PaginaContext.css'
 
 export const PaginaContext = ()=>{
 
     return (
-        <div>
+        <div className="paginacontext">
             <h1>Pagina Context</h1>
-            <p>"Pagina Context que recibe un state creado con createContext/useContext"</p>
+            <p className="resumen">"Pagina Context que recibe un state creado con createContext/useContext"</p>
             <ContextoProductosProvider>
                 <ListadoContext />
             </ContextoProductosProvider>

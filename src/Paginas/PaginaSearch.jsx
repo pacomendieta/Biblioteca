@@ -27,7 +27,7 @@ let ResultadoSearch= ( props )=>{
     return (
         <>
         <h2>Productos Encontrados:</h2>
-        { loading? <p>Cargando...<Spinner/></p> :<ProductosSet productos={productos} />
+        { loading? <div>Cargando...<Spinner/></div> :<ProductosSet productos={productos} />
         }
           { !productos && <p>No se encontraron productos</p>}
 
@@ -54,6 +54,16 @@ let ResultadoSearch= ( props )=>{
     return(
         <div className="paginaSearch">
             <h2>Página de búsqueda de Productos</h2>
+            <div className="resumen">
+                Arriba: <br></br>
+                El formulario actualiza un estado local de la pagina: "buscado".<br></br>
+                Abajo: ResultadoSearch<br></br>
+                "buscado" se pasa por props al componente que busca 'ResultadoSearch' que a su vez llama al custom hook 'useProductos' para cargar resultados. <br></br>
+                useProductos, utiliza useEffect para lanzar la busqueda solo cuando cambie el valor de "buscado". Retorna los productos y el indicador de si carga en curso.<br></br>
+                Si la carga no esta en curso ResultadoSearch pinta los productos, y si no pinta un spinner.<br></br>
+
+
+            </div>
             <FormularioSearch fsubmit={fsubmit} valores={buscado} />
             <p>Buscado: {buscado.id}  {buscado.titulo} </p>
             <ResultadoSearch id={buscado.id} titulo={buscado.titulo} ></ResultadoSearch>

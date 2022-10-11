@@ -122,7 +122,13 @@ export const PaginaRedux=({store})=>{
     return(
         <div className="paginaredux">
             <h1>Pagina Redux</h1>
-            <Link to={'/'}> back to home</Link>
+            <p className='resumen'>
+                Utiliza Redux: state.estadoProductos / state.frontend.<br></br>
+                El div izquierdo se actualiza ante cambios de estadoProductos.<br></br>
+                El div derecho realiza llamadas a Actions sobre el estado.<br></br>
+                Productos se carga desde api externo (simulado en localhost:3001 con json-server y fichero src/bdproductos.json).<br></br>
+
+            </p>
             <div className='gridpaginaredux' >
                 <div className='celdagrid'>
                     <h2>Estado (EstadoVisual)</h2>

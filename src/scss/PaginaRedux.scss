@@ -7,6 +7,12 @@
         color:            var(--colorh1);
         background-color: var(--fondoh1) ;
     }
+    .resumen {
+        padding: 0px 20px 0px 20px;
+        column-count: 3;
+        text-align: left;
+        font-size: 1.2em;
+    }
     .gridpaginaredux {
         display:flex;
         flex-direction: row;

@@ -8,13 +8,21 @@ import { searchProductos } from "../Servicios/Productos";
 
 
 export const useProductos=( props )=>{
-    const {id, titulo} = props;
-    let [productos,setProductos] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const {id, titulo} = props; //id,titulo = criterios busqueda
+    let [productos,setProductos] = useState([]); //productos se cargan como permanentes
+    const [loading, setLoading] = useState(false); //loading indica si carga en curso
     useEffect(()=>{
+        // si id y titulo vacios recuperar último valor de localStorage
+        var buscado = {id, titulo};
+        if  (!id && !titulo) { buscado.id  = localStorage.getItem('ultimaBusqueda') }
         setLoading(true);
-        searchProductos( {id: id, titulo: titulo } )
-        .then((res)=>{ setProductos(res);  setLoading(false)});
+        searchProductos( buscado )
+        .then((res)=>{ 
+            setProductos(res);  
+            localStorage.setItem('ultimaBusqueda', buscado.id )
+            setLoading(false)
+        });
+       
     },[id,titulo])
     console.log("------HOOK useProductos() retorna:", loading, productos)
     return { loading, productos }

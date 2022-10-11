@@ -13,7 +13,7 @@ export const Cabecera=()=>{
                 <Link to = '/producto/search'>Busqueda Productos</Link>
                 <Link to = '/redux'>Pagina Redux</Link>
                 <Link to = '/hooks'>Pagina Hooks</Link>
-                <Link to = '/context'>Pagina Context</Link>
+                <Link to = '/context'>Pagina Context</Link> 
                 <div className="switch">
                     <span className="sol">&#x2600;</span>
                     <input type='checkbox' className='botontoggle' id='botontoggle'/>
