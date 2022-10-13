@@ -1,4 +1,10 @@
-# Getting Started with Create React App
+#Aplicacion REACT / Redux
+Lanzar App:
+>npx json-server -p 3001 src/bdproductos.js   -->json con productos, servido con un api con el paquete json-server
+>npm start
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
